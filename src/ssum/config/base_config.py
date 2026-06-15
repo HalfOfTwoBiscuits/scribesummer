@@ -55,7 +55,7 @@ class BaseConfig(ABC):
         file_handler = logging.FileHandler(filename=log_file_path)
         file_handler.setFormatter(formatter)
         
-        wsgi_handler = logging.StreamHandler(stream=wsgi_errors_stream)
+        wsgi_handler = logging.StreamHandler(stream=wsgi_errors_stream())
         wsgi_handler.setFormatter(formatter)
 
         logger = logging.getLogger('app')

@@ -14,7 +14,6 @@ class EnvironmentVariableLoader:
 
     def __init__(self, app: flask.Flask):
         self.__app = app
-        app.evl = self
 
     def get_config(self, name: str, datatype: Callable[[str], T]=str, default: D=None) -> T | D:
         '''Get a configuration value from the
