@@ -5,7 +5,7 @@ from flask_migrate import Migrate
 
 from ssum.controller import Controller
 from ssum.model import ModelHandler
-from ssum.view import ViewHandler
+from ssum.view import ViewHandler, FormHandler
 from ssum.config import EnvironmentVariableLoader, ConfigHandler
 from ssum.config.exceptions import MissingEnvironmentVariableError
 
@@ -41,7 +41,8 @@ def create_app() -> Flask:
     # Initialise app components.
     model_handler = ModelHandler(app)
     view_handler = ViewHandler()
-    controller = Controller(app, model_handler, view_handler)
+    form_handler = FormHandler()
+    controller = Controller(app, model_handler, view_handler, form_handler)
     controller.define_url_endpoints()
 
     # Initialise third-party app components.
