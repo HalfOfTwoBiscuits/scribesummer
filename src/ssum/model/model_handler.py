@@ -1,7 +1,7 @@
 import flask
 import flask_sqlalchemy.model
 
-from ssum.model.models import db
+from ssum.model.db import db
 from ssum.model.exceptions import ModelNotFoundError
 
 class ModelHandler:
