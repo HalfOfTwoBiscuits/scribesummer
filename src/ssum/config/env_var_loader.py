@@ -12,6 +12,8 @@ class EnvironmentVariableLoader:
     '''Utility class that loads configuration values
     from environment variables.'''
 
+    __app: flask.Flask
+    
     def __init__(self, app: flask.Flask):
         self.__app = app
 

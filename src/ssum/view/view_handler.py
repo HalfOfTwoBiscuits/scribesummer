@@ -1,6 +1,6 @@
 import flask.views
 
-class ViewNotFoundError(Exception): pass
+from ssum.view.exceptions import ViewNotFoundError
 
 class ViewHandler:
     '''Class responsible for managing the view classes.'''

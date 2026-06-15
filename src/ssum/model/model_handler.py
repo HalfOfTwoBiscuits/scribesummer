@@ -2,14 +2,10 @@ import flask
 import flask_sqlalchemy.model
 
 from ssum.model.models import db
-
-class ModelNotFoundError(Exception):
-    '''Exception for when a model is not found.'''
-    pass
+from ssum.model.exceptions import ModelNotFoundError
 
 class ModelHandler:
     '''Class responsible for setting up the SQLAlchemy database and storing its models.'''
-
 
     __models: dict[str, type[flask_sqlalchemy.model.Model]]
 

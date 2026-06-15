@@ -1,8 +1,9 @@
 import flask_wtf
 
-class FormNotFoundError(Exception): pass
+from ssum.view.exceptions import FormNotFoundError
 
 class FormHandler:
+    '''Class responsible for managing the form classes.'''
 
     __forms: dict[str, type[flask_wtf.FlaskForm]]
 

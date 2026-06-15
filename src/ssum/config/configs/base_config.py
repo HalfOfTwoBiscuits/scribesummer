@@ -10,6 +10,8 @@ from ssum.config import EnvironmentVariableLoader
 class BaseConfig(ABC):
     '''Base class for the objects responsible for
     configuring the app to suit either development or production.'''
+    
+    _loader: EnvironmentVariableLoader
 
     def __init__(
         self,
