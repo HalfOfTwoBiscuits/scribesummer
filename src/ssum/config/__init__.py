@@ -1,3 +1,2 @@
 from ssum.config.env_var_loader import EnvironmentVariableLoader
-from ssum.config.development_config import DevelopmentConfig
-from ssum.config.production_config import ProductionConfig
+from ssum.config.config_handler import ConfigHandler
