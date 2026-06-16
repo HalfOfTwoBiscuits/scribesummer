@@ -1,6 +1,8 @@
 from sqlalchemy import Column, ForeignKey
 
 from scribesummer.src.ssum.model.db import db
+from scribesummer.src.ssum.model.models.category import Category
+from scribesummer.src.ssum.model.models.custom_subscription import CustomSubscription
 
 # Joining table for the many-to-many relationship between
 # custom subscriptions and categories.
@@ -9,7 +11,7 @@ from scribesummer.src.ssum.model.db import db
 category_for_custom_sub = db.Table(
     "category_for_custom_sub",
     db.Model.metadata,
-    Column("category_id", ForeignKey("Category.id"), primary_key=True),
-    Column("subscription_id", ForeignKey("CustomSubscription.id"), primary_key=True),
+    Column("category_id", ForeignKey(Category.id), primary_key=True),
+    Column("subscription_id", ForeignKey(CustomSubscription.id), primary_key=True),
     extend_existing=True
 )

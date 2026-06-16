@@ -4,8 +4,6 @@ from sqlalchemy.orm import mapped_column, Mapped, relationship
 
 from scribesummer.src.ssum.model.db import db
 from scribesummer.src.ssum.model.models.timestamp_mixin import TimestampMixin
-from scribesummer.src.ssum.model.models.category_join_sub import category_for_custom_sub
-from scribesummer.src.ssum.model.models.category_join_preset import category_for_preset
 
 class Category(db.Model, TimestampMixin):
     '''A pre-populated category of subscription that can be used as a filter.
@@ -17,12 +15,12 @@ class Category(db.Model, TimestampMixin):
 
     custom_subscriptions_using_it: Mapped[List["CustomSubscription"]] = relationship( # type: ignore
         "CustomSubscription",
-        secondary=category_for_custom_sub,
+        secondary="category_for_custom_sub",
         back_populates="categories"
     )
 
     presets_using_it: Mapped[List["SubscriptionPreset"]] = relationship( # type: ignore
         "SubscriptionPreset",
-        secondary=category_for_preset,
+        secondary="category_for_preset",
         back_populates="categories"
     )

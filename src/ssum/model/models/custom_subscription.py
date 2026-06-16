@@ -4,7 +4,6 @@ from sqlalchemy.orm import Mapped, relationship
 
 from scribesummer.src.ssum.model.interval_enum import IntervalEnum
 from scribesummer.src.ssum.model.models.base_subscription import Subscription
-from scribesummer.src.ssum.model.models.category_join_sub import category_for_custom_sub
 
 class CustomSubscription(Subscription):
     '''One of the user's paid subscriptions.
@@ -24,7 +23,7 @@ class CustomSubscription(Subscription):
 
     categories: Mapped[List["Category"]] = relationship( # type: ignore
         "Category",
-        secondary=category_for_custom_sub,
+        secondary="category_for_custom_sub",
         back_populates="custom_subscriptions_using_it"
     )
 

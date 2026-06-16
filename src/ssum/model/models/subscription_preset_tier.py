@@ -6,6 +6,7 @@ from sqlalchemy.orm import mapped_column, Mapped, relationship
 from scribesummer.src.ssum.model.db import db
 from scribesummer.src.ssum.model.interval_enum import IntervalEnum
 from scribesummer.src.ssum.model.models.timestamp_mixin import TimestampMixin
+from scribesummer.src.ssum.model.models.subscription_preset import SubscriptionPreset
 
 class SubscriptionPresetTier(db.Model, TimestampMixin):
     '''A pre-populated tier for a subscription of a certain brand.
@@ -18,7 +19,8 @@ class SubscriptionPresetTier(db.Model, TimestampMixin):
     interval: Mapped[IntervalEnum]
 
     # Relationship to the preset it is a tier of.
-    preset_id: Mapped[str] = mapped_column(ForeignKey("SubscriptionPreset.id"), nullable=False)
+    preset_id: Mapped[str] = mapped_column(ForeignKey(SubscriptionPreset.id), nullable=False)
+
     preset_obj: Mapped["SubscriptionPreset"] = relationship( # type: ignore
         "SubscriptionPreset", uselist=False,
         back_populates="tiers"
