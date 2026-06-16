@@ -1,2 +1,2 @@
-from ssum.config.env_var_loader import EnvironmentVariableLoader
-from ssum.config.config_handler import ConfigHandler
+from scribesummer.src.ssum.config.env_var_loader import EnvironmentVariableLoader
+from scribesummer.src.ssum.config.config_handler import ConfigHandler

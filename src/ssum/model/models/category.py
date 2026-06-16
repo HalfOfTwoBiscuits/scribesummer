@@ -2,11 +2,11 @@ from typing import List
 
 from sqlalchemy.orm import mapped_column, Mapped, relationship
 
-from ssum.model.db import db
-from ssum.model.models.timestamp_mixin import TimestampMixin
-from ssum.model.models.category_joins import category_for_custom_sub, category_for_preset
-from ssum.model.models.custom_subscription import CustomSubscription
-from ssum.model.models.subscription_preset import SubscriptionPreset
+from scribesummer.src.ssum.model.db import db
+from scribesummer.src.ssum.model.models.timestamp_mixin import TimestampMixin
+from scribesummer.src.ssum.model.models.category_joins import category_for_custom_sub, category_for_preset
+from scribesummer.src.ssum.model.models.custom_subscription import CustomSubscription
+from scribesummer.src.ssum.model.models.subscription_preset import SubscriptionPreset
 
 class Category(db.Model, TimestampMixin):
     '''A pre-populated category of subscription that can be used as a filter.

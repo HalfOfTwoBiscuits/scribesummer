@@ -1,6 +1,6 @@
 import flask.views
 
-from ssum.view.exceptions import ViewNotFoundError
+from scribesummer.src.ssum.view.exceptions import ViewNotFoundError
 
 class ViewHandler:
     '''Class responsible for managing the view classes.'''

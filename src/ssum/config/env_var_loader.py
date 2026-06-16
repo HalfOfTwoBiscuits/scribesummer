@@ -3,7 +3,7 @@ from typing import Callable, TypeVar, Any
 
 import flask
 
-from ssum.config.exceptions import MissingEnvironmentVariableError
+from scribesummer.src.ssum.config.exceptions import MissingEnvironmentVariableError
 
 T = TypeVar("T")
 D = TypeVar("D")

@@ -3,10 +3,10 @@ from sqlalchemy import ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy.ext.hybrid import hybrid_property
 
-from ssum.model.interval_enum import IntervalEnum
-from ssum.model.models.base_subscription import Subscription
-from ssum.model.models.subscription_preset import SubscriptionPreset
-from ssum.model.models.subscription_preset_tier import SubscriptionPresetTier
+from scribesummer.src.ssum.model.interval_enum import IntervalEnum
+from scribesummer.src.ssum.model.models.base_subscription import Subscription
+from scribesummer.src.ssum.model.models.subscription_preset import SubscriptionPreset
+from scribesummer.src.ssum.model.models.subscription_preset_tier import SubscriptionPresetTier
 
 class PresetBasedSubscription(Subscription):
     '''One of the user's paid subscriptions.

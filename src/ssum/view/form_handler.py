@@ -1,6 +1,6 @@
 import flask_wtf
 
-from ssum.view.exceptions import FormNotFoundError
+from scribesummer.src.ssum.view.exceptions import FormNotFoundError
 
 class FormHandler:
     '''Class responsible for managing the form classes.'''

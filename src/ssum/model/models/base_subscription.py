@@ -5,9 +5,9 @@ from dateutil.relativedelta import relativedelta
 from sqlalchemy.orm import mapped_column, Mapped
 from sqlalchemy.ext.hybrid import hybrid_method
 
-from ssum.model.db import db
-from ssum.model.interval_enum import IntervalEnum
-from ssum.model.models.timestamp_mixin import TimestampMixin
+from scribesummer.src.ssum.model.db import db
+from scribesummer.src.ssum.model.interval_enum import IntervalEnum
+from scribesummer.src.ssum.model.models.timestamp_mixin import TimestampMixin
 
 class Subscription(db.Model, TimestampMixin):
     '''One of the user's paid subscriptions.

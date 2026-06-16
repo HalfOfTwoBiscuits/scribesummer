@@ -1,9 +1,9 @@
 from sqlalchemy import Column, ForeignKey
 
-from ssum.model.db import db
-from ssum.model.models.category import Category
-from ssum.model.models.custom_subscription import CustomSubscription
-from ssum.model.models.subscription_preset import SubscriptionPreset
+from scribesummer.src.ssum.model.db import db
+from scribesummer.src.ssum.model.models.category import Category
+from scribesummer.src.ssum.model.models.custom_subscription import CustomSubscription
+from scribesummer.src.ssum.model.models.subscription_preset import SubscriptionPreset
 
 # Joining tables for the many-to-many relationships between
 # custom subscriptions and categories, and subscription presets and categories.

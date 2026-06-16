@@ -1,7 +1,7 @@
 import flask
 
-from ssum.model import ModelHandler
-from ssum.view import ViewHandler, FormHandler
+from scribesummer.src.ssum.model import ModelHandler
+from scribesummer.src.ssum.view import ViewHandler, FormHandler
 
 class Controller:
     '''Class responsible for defining URL endpoints.'''

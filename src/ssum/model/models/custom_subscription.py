@@ -2,10 +2,10 @@ from typing import List
 
 from sqlalchemy.orm import Mapped, relationship
 
-from ssum.model.interval_enum import IntervalEnum
-from ssum.model.models.base_subscription import Subscription
-from ssum.model.models.category_joins import category_for_custom_sub
-from ssum.model.models.category import Category
+from scribesummer.src.ssum.model.interval_enum import IntervalEnum
+from scribesummer.src.ssum.model.models.base_subscription import Subscription
+from scribesummer.src.ssum.model.models.category_joins import category_for_custom_sub
+from scribesummer.src.ssum.model.models.category import Category
 
 class CustomSubscription(Subscription):
     '''One of the user's paid subscriptions.

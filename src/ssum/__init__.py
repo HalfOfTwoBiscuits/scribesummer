@@ -3,11 +3,11 @@ from os import environ
 from flask import Flask
 from flask_migrate import Migrate
 
-from ssum.controller import Controller
-from ssum.model import ModelHandler
-from ssum.view import ViewHandler, FormHandler
-from ssum.config import EnvironmentVariableLoader, ConfigHandler
-from ssum.config.exceptions import MissingEnvironmentVariableError
+from scribesummer.src.ssum.controller import Controller
+from scribesummer.src.ssum.model import ModelHandler
+from scribesummer.src.ssum.view import ViewHandler, FormHandler
+from scribesummer.src.ssum.config import EnvironmentVariableLoader, ConfigHandler
+from scribesummer.src.ssum.config.exceptions import MissingEnvironmentVariableError
 
 def create_app() -> Flask:
     '''Construct, configure, and return the app object.

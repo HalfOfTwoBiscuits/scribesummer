@@ -1,6 +1,6 @@
-from ssum.config.configs.base_config import BaseConfig
-from ssum.config.configs.development_config import DevelopmentConfig
-from ssum.config.configs.production_config import ProductionConfig
+from scribesummer.src.ssum.config.configs.base_config import BaseConfig
+from scribesummer.src.ssum.config.configs.development_config import DevelopmentConfig
+from scribesummer.src.ssum.config.configs.production_config import ProductionConfig
 
 class ConfigNotFoundError(Exception): pass
 

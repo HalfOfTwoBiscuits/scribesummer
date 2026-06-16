@@ -3,11 +3,11 @@ from typing import List
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import mapped_column, Mapped, relationship
 
-from ssum.model.db import db
-from ssum.model.interval_enum import IntervalEnum
-from ssum.model.models.timestamp_mixin import TimestampMixin
-from ssum.model.models.subscription_preset import SubscriptionPreset
-from ssum.model.models.preset_based_subscription import PresetBasedSubscription
+from scribesummer.src.ssum.model.db import db
+from scribesummer.src.ssum.model.interval_enum import IntervalEnum
+from scribesummer.src.ssum.model.models.timestamp_mixin import TimestampMixin
+from scribesummer.src.ssum.model.models.subscription_preset import SubscriptionPreset
+from scribesummer.src.ssum.model.models.preset_based_subscription import PresetBasedSubscription
 
 class SubscriptionPresetTier(db.Model, TimestampMixin):
     '''A pre-populated tier for a subscription of a certain brand.

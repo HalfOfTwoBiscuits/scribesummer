@@ -1,9 +1,9 @@
 import flask
 import flask_sqlalchemy.model
 
-from ssum.model.db import db
-from ssum.model.exceptions import ModelNotFoundError
-from ssum.model.models import Subscription, SubscriptionPreset, SubscriptionPresetTier, Category
+from scribesummer.src.ssum.model.db import db
+from scribesummer.src.ssum.model.exceptions import ModelNotFoundError
+from scribesummer.src.ssum.model.models import Subscription, SubscriptionPreset, SubscriptionPresetTier, Category
 
 class ModelHandler:
     '''Class responsible for setting up the SQLAlchemy database and storing its models.'''

@@ -1,4 +1,4 @@
-from ssum.config.configs.base_config import BaseConfig
+from scribesummer.src.ssum.config.configs.base_config import BaseConfig
 
 class DevelopmentConfig(BaseConfig):
     '''Configuration values for development.

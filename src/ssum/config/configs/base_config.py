@@ -5,7 +5,7 @@ import logging
 
 from flask.logging import wsgi_errors_stream
 
-from ssum.config import EnvironmentVariableLoader
+from scribesummer.src.ssum.config import EnvironmentVariableLoader
 
 class BaseConfig(ABC):
     '''Base class for the objects responsible for
