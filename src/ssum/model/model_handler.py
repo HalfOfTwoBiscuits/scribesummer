@@ -3,6 +3,7 @@ import flask_sqlalchemy.model
 
 from ssum.model.db import db
 from ssum.model.exceptions import ModelNotFoundError
+from ssum.model.models import Subscription, SubscriptionPreset, SubscriptionPresetTier, Category
 
 class ModelHandler:
     '''Class responsible for setting up the SQLAlchemy database and storing its models.'''
@@ -17,7 +18,12 @@ class ModelHandler:
         
         db.init_app(app)
         self.__db = db
-        self.__models = {}
+        self.__models = {
+            "Subscription": Subscription,
+            "SubscriptionPreset": SubscriptionPreset,
+            "SubscriptionPresetTier": SubscriptionPresetTier,
+            "Category": Category
+        }
 
     @property
     def db(self): 
