@@ -2,7 +2,6 @@
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 
-from sqlalchemy import Integer
 from sqlalchemy.orm import mapped_column, Mapped
 from sqlalchemy.ext.hybrid import hybrid_method
 
@@ -20,8 +19,8 @@ class Subscription(db.Model, TimestampMixin):
     This class is the table,
     and the children specify specific attributes.'''
 
-    id = mapped_column(Integer(), primary_key=True)
-    type = Mapped[str] # Indicates preset or custom.
+    id: Mapped[int] = mapped_column(primary_key=True)
+    type: Mapped[str] # Indicates preset or custom.
 
     # This class is used as a polymorphic base,
     # meaning it is a table, but records are added only

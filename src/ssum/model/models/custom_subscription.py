@@ -1,9 +1,11 @@
-from sqlalchemy import Enum
+from typing import List
+
 from sqlalchemy.orm import Mapped, relationship
 
 from ssum.model.interval_enum import IntervalEnum
 from ssum.model.models.base_subscription import Subscription
 from ssum.model.models.category_joins import category_for_custom_sub
+from ssum.model.models.category import Category
 
 class CustomSubscription(Subscription):
     '''One of the user's paid subscriptions.
@@ -17,12 +19,12 @@ class CustomSubscription(Subscription):
     SQLAlchemy calls this "Single Table Inheritance".
     See: https://docs.sqlalchemy.org/en/20/orm/inheritance.html'''
 
-    name = Mapped[str]
-    price_in_pence = Mapped[int]
-    interval = Enum(IntervalEnum)
+    name: Mapped[str]
+    price_in_pence: Mapped[int]
+    interval: Mapped[IntervalEnum]
 
-    categories = relationship(
-        "Category",
+    categories: Mapped[List[Category]] = relationship(
+        Category,
         secondary=category_for_custom_sub,
         back_populates="custom_subscriptions_using_it"
     )

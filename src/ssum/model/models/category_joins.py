@@ -1,6 +1,9 @@
 from sqlalchemy import Column, ForeignKey
 
 from ssum.model.db import db
+from ssum.model.models.category import Category
+from ssum.model.models.custom_subscription import CustomSubscription
+from ssum.model.models.subscription_preset import SubscriptionPreset
 
 # Joining tables for the many-to-many relationships between
 # custom subscriptions and categories, and subscription presets and categories.
@@ -9,13 +12,13 @@ from ssum.model.db import db
 category_for_custom_sub = db.Table(
     "category_for_custom_sub",
     db.Model.metadata,
-    Column("category_id", ForeignKey("category.id"), primary_key=True),
-    Column("subscription_id", ForeignKey("custom_subscription.id"), primary_key=True)
+    Column("category_id", ForeignKey(Category.id), primary_key=True),
+    Column("subscription_id", ForeignKey(CustomSubscription.id), primary_key=True)
 )
 
 category_for_preset = db.Table(
     "category_for_custom_sub",
     db.Model.metadata,
-    Column("category_id", ForeignKey("category.id"), primary_key=True),
-    Column("subscription_id", ForeignKey("subscription_preset.id"), primary_key=True)
+    Column("category_id", ForeignKey(Category.id), primary_key=True),
+    Column("subscription_id", ForeignKey(SubscriptionPreset.id), primary_key=True)
 )

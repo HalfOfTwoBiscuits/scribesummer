@@ -1,24 +1,27 @@
-from sqlalchemy import String
+from typing import List
+
 from sqlalchemy.orm import mapped_column, Mapped, relationship
 
 from ssum.model.db import db
 from ssum.model.models.timestamp_mixin import TimestampMixin
 from ssum.model.models.category_joins import category_for_preset
+from ssum.model.models.subscription_preset_tier import SubscriptionPresetTier
+from ssum.model.models.category import Category
 
 class SubscriptionPreset(db.Model, TimestampMixin):
     '''A pre-populated preset for a subscription of a certain brand.'''
 
-    id = mapped_column(String(), primary_key=True)
-    name = Mapped[str]
+    id: Mapped[str] = mapped_column(primary_key=True)
+    name: Mapped[str]
 
     # Available tiers for this preset.
-    tiers = relationship(
-        "SubscriptionPresetTier",
+    tiers: Mapped[List[SubscriptionPresetTier]] = relationship(
+        SubscriptionPresetTier,
         back_populates="preset_obj"
     )
 
-    categories = relationship(
-        "Category",
+    categories: Mapped[List[Category]] = relationship(
+        Category,
         secondary=category_for_preset,
         back_populates="presets_using_it"
     )

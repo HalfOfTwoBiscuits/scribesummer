@@ -1,9 +1,12 @@
 
 from sqlalchemy import ForeignKey
-from sqlalchemy.orm import mapped_column, relationship
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy.ext.hybrid import hybrid_property
 
+from ssum.model.interval_enum import IntervalEnum
 from ssum.model.models.base_subscription import Subscription
+from ssum.model.models.subscription_preset import SubscriptionPreset
+from ssum.model.models.subscription_preset_tier import SubscriptionPresetTier
 
 class SubscriptionFromPreset(Subscription):
     '''One of the user's paid subscriptions.
@@ -17,18 +20,18 @@ class SubscriptionFromPreset(Subscription):
     See: https://docs.sqlalchemy.org/en/20/orm/inheritance.html'''
 
     # Optional relationship to the preset it was defined with.
-    preset_id = mapped_column(ForeignKey("subscription_preset.id"))
+    preset_id: Mapped[str] = mapped_column(ForeignKey("subscription_preset.id"))
 
     # This Relationship object allows the preset to be easily retrieved in Python.
-    preset_obj = relationship(
-        "SubscriptionPreset", uselist=False,
+    preset_obj: Mapped[SubscriptionPreset] = relationship(
+        SubscriptionPreset, uselist=False,
         back_populates="used_by"
     )
 
     # Also related to one of `SubscriptionPreset.tiers`.
-    tier_id = mapped_column(ForeignKey("subscription_preset_tier.id"))
-    tier_obj = relationship(
-        "SubscriptionPresetTier", uselist=False,
+    tier_id: Mapped[str] = mapped_column(ForeignKey("subscription_preset_tier.id"))
+    tier_obj: Mapped[SubscriptionPresetTier] = relationship(
+        SubscriptionPresetTier, uselist=False,
         back_populates="used_by"
     )
 
@@ -43,9 +46,9 @@ class SubscriptionFromPreset(Subscription):
         return self.tier_obj.price_in_pence
 
     @hybrid_property
-    def interval(self) -> int:
+    def interval(self) -> IntervalEnum:
         '''Billing interval of this subscription as determined by its preset.'''
-        return self.tier_obj.billing_interval
+        return self.tier_obj.interval
     
     # Its `type` attribute will be set to "preset_based".
     __mapper_args__ = {
