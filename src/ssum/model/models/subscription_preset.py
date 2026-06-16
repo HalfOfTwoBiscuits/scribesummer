@@ -4,7 +4,7 @@ from sqlalchemy.orm import mapped_column, Mapped, relationship
 
 from scribesummer.src.ssum.model.db import db
 from scribesummer.src.ssum.model.models.timestamp_mixin import TimestampMixin
-from scribesummer.src.ssum.model.models.category_joins import category_for_preset
+from scribesummer.src.ssum.model.models.category_join_preset import category_for_preset
 
 class SubscriptionPreset(db.Model, TimestampMixin):
     '''A pre-populated preset for a subscription of a certain brand.'''
