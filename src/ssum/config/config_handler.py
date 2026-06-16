@@ -12,7 +12,7 @@ class ConfigHandler:
     def __init__(self):
         '''Store a dictionary of view classes from the views package.'''
 
-        self.__configs = {}
+        self.__configs = {"development": DevelopmentConfig, "production": ProductionConfig}
 
     @property
     def config_names(self) -> list[str]:
