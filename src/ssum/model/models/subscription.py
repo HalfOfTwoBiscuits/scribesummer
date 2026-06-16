@@ -1,7 +1,7 @@
 
 from datetime import datetime, timedelta
 
-from sqlalchemy import Integer, String, ForeignKey, Enum
+from sqlalchemy import Integer, ForeignKey, Enum
 from sqlalchemy.orm import mapped_column, Mapped, relationship
 from sqlalchemy.ext.hybrid import hybrid_property
 from dateutil.relativedelta import relativedelta
@@ -15,7 +15,7 @@ class Subscription(db.Model, TimestampMixin):
     It has an optional relationship to the SubscriptionPreset it was created with.'''
 
     id = mapped_column(Integer(), primary_key=True)
-    name = mapped_column(String(length=255), nullable=False)
+    name = Mapped[str]
     price_in_pence = Mapped[int]
     duration = Enum(DurationEnum)
 

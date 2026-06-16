@@ -1,4 +1,4 @@
-from sqlalchemy import Integer, String, ForeignKey, Enum
+from sqlalchemy import String, ForeignKey, Enum
 from sqlalchemy.orm import mapped_column, Mapped, relationship
 
 from ssum.model.db import db
