@@ -8,7 +8,7 @@ from ssum.model.models.base_subscription import Subscription
 from ssum.model.models.subscription_preset import SubscriptionPreset
 from ssum.model.models.subscription_preset_tier import SubscriptionPresetTier
 
-class SubscriptionFromPreset(Subscription):
+class PresetBasedSubscription(Subscription):
     '''One of the user's paid subscriptions.
     Its attributes are specified by a preset for a particular
     company and subscription tier.
