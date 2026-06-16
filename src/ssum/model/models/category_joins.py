@@ -10,12 +10,14 @@ category_for_custom_sub = db.Table(
     "category_for_custom_sub",
     db.Model.metadata,
     Column("category_id", ForeignKey("Category.id"), primary_key=True),
-    Column("subscription_id", ForeignKey("CustomSubscription.id"), primary_key=True)
+    Column("subscription_id", ForeignKey("CustomSubscription.id"), primary_key=True),
+    extend_existing=True
 )
 
 category_for_preset = db.Table(
     "category_for_custom_sub",
     db.Model.metadata,
     Column("category_id", ForeignKey("Category.id"), primary_key=True),
-    Column("subscription_id", ForeignKey("SubscriptionPreset.id"), primary_key=True)
+    Column("subscription_id", ForeignKey("SubscriptionPreset.id"), primary_key=True),
+    extend_existing=True
 )
