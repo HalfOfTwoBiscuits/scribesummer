@@ -23,3 +23,9 @@ class Subscription(db.Model, TimestampMixin):
         back_populates="used_by"
     )
 
+    # Also related to one of `SubscriptionPreset.tiers`.
+    tier_id = mapped_column(ForeignKey("subscription_preset_tier.id"))
+    tier_obj = relationship(
+        "SubscriptionPresetTier", uselist=False,
+        back_populates="used_by"
+    )
