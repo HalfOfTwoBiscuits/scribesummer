@@ -5,9 +5,6 @@ from sqlalchemy.orm import mapped_column, Mapped, relationship
 from scribesummer.src.ssum.model.db import db
 from scribesummer.src.ssum.model.models.timestamp_mixin import TimestampMixin
 from scribesummer.src.ssum.model.models.category_joins import category_for_preset
-from scribesummer.src.ssum.model.models.subscription_preset_tier import SubscriptionPresetTier
-from scribesummer.src.ssum.model.models.category import Category
-from scribesummer.src.ssum.model.models.preset_based_subscription import PresetBasedSubscription
 
 class SubscriptionPreset(db.Model, TimestampMixin):
     '''A pre-populated preset for a subscription of a certain brand.'''
@@ -16,18 +13,18 @@ class SubscriptionPreset(db.Model, TimestampMixin):
     name: Mapped[str]
 
     # Available tiers for this preset.
-    tiers: Mapped[List[SubscriptionPresetTier]] = relationship(
-        SubscriptionPresetTier,
+    tiers: Mapped[List["SubscriptionPresetTier"]] = relationship( # type: ignore
+        "SubscriptionPresetTier",
         back_populates="preset_obj"
     )
 
-    categories: Mapped[List[Category]] = relationship(
-        Category,
+    categories: Mapped[List["Category"]] = relationship( # type: ignore
+        "Category",
         secondary=category_for_preset,
         back_populates="presets_using_it"
     )
 
-    used_by: Mapped[List[PresetBasedSubscription]] = relationship(
-        PresetBasedSubscription,
+    used_by: Mapped[List["PresetBasedSubscription"]] = relationship( # type: ignore
+        "PresetBasedSubscription",
         back_populates="preset_obj"
     )

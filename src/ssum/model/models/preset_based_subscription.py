@@ -5,8 +5,6 @@ from sqlalchemy.ext.hybrid import hybrid_property
 
 from scribesummer.src.ssum.model.interval_enum import IntervalEnum
 from scribesummer.src.ssum.model.models.base_subscription import Subscription
-from scribesummer.src.ssum.model.models.subscription_preset import SubscriptionPreset
-from scribesummer.src.ssum.model.models.subscription_preset_tier import SubscriptionPresetTier
 
 class PresetBasedSubscription(Subscription):
     '''One of the user's paid subscriptions.
@@ -23,15 +21,15 @@ class PresetBasedSubscription(Subscription):
     preset_id: Mapped[str] = mapped_column(ForeignKey("subscription_preset.id"))
 
     # This Relationship object allows the preset to be easily retrieved in Python.
-    preset_obj: Mapped[SubscriptionPreset] = relationship(
-        SubscriptionPreset, uselist=False,
+    preset_obj: Mapped["SubscriptionPreset"] = relationship( # type: ignore
+        "SubscriptionPreset", uselist=False,
         back_populates="used_by"
     )
 
     # Also related to one of `SubscriptionPreset.tiers`.
     tier_id: Mapped[str] = mapped_column(ForeignKey("subscription_preset_tier.id"))
-    tier_obj: Mapped[SubscriptionPresetTier] = relationship(
-        SubscriptionPresetTier, uselist=False,
+    tier_obj: Mapped["SubscriptionPresetTier"] = relationship( # type: ignore
+        "SubscriptionPresetTier", uselist=False,
         back_populates="used_by"
     )
 
