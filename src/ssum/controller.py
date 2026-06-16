@@ -31,26 +31,6 @@ class Controller:
         URL parameters, database models and forms that a view uses
         will be set up as arguments to the created view function.'''
         
-        # Homepage.
-        self.__define_endpoint("Home", "/")
-
-        # Admin Dashboard.
-        self.__define_endpoint("AdminDashboard", "/admin-dashboard")
-
-        # Edit Text.
-        self.__define_endpoint("EditText", "/edit-text")
-
-        # Edit Details.
-        self.__define_endpoint("EditDetails", "/edit-details")
-
-        # Confirm SiteString change.
-        self.__define_endpoint("DraftDecision", "/draft-decision/<string:string_id>")
-
-        # Blog placeholder.
-        self.__define_endpoint("Blog", "/blog")
-
-        # Fetch API: SiteString.
-        self.__define_endpoint("SiteStringFetch", "/fetch-api/public-site-string/<string:string_id>/<string:str_type>")
 
     def __define_endpoint(self, class_name: str, url: str, *args):
         '''Utility method used to define an endpoint with the provided URL.
