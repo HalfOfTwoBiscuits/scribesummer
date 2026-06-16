@@ -2,7 +2,7 @@
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 
-from sqlalchemy import Integer, ForeignKey, Enum
+from sqlalchemy import Integer
 from sqlalchemy.orm import mapped_column, Mapped
 from sqlalchemy.ext.hybrid import hybrid_method
 

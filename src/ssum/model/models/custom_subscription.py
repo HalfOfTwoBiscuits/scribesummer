@@ -1,7 +1,6 @@
-from sqlalchemy import Integer, Enum
+from sqlalchemy import Enum
 from sqlalchemy.orm import Mapped, relationship
 
-from ssum.model.db import db
 from ssum.model.interval_enum import IntervalEnum
 from ssum.model.models.base_subscription import Subscription
 from ssum.model.models.category_joins import category_for_custom_sub
