@@ -20,6 +20,7 @@ class Subscription(db.Model, TimestampMixin):
     This class is the table,
     and the children specify specific attributes.'''
 
+    id = mapped_column(Integer(), primary_key=True)
     type = Mapped[str] # Indicates preset or custom.
 
     # This class is used as a polymorphic base,
