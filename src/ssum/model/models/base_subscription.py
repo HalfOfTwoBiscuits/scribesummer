@@ -2,13 +2,14 @@
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 
-from sqlalchemy import String
+from sqlalchemy import String, ForeignKey
 from sqlalchemy.orm import mapped_column, Mapped, relationship
 from sqlalchemy.ext.hybrid import hybrid_method, hybrid_property
 
 from scribesummer.src.ssum.model.db import db
 from scribesummer.src.ssum.model.interval_enum import IntervalEnum
 from scribesummer.src.ssum.model.models.timestamp_mixin import TimestampMixin
+from scribesummer.src.ssum.model.models.user import User
 
 class Subscription(db.Model, TimestampMixin):
     '''One of the user's paid subscriptions.
@@ -100,6 +101,9 @@ class Subscription(db.Model, TimestampMixin):
         else:
             return f'£{pounds}.{pence}'
         
+    # Relationship to the user who created it.
+    user_id: Mapped[str] = mapped_column(ForeignKey(User.id), nullable=False)
+
     user_obj: Mapped["User"] = relationship( # type: ignore
         "User", uselist=False,
         back_populates="subscriptions"
