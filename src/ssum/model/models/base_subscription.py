@@ -55,22 +55,33 @@ class Subscription(db.Model, TimestampMixin):
 
         return renewal
     
+    @hybrid_property
+    def monthly_price_in_pence(self) -> int:
+        '''Return price in pence converted to a monthly interval.'''
+
+        # Attributes will always be present, since this is a child.
+        price_in_pence = self.price_in_pence # type: ignore
+        interval = self.interval # type: ignore
+
+        match (interval.value):
+            case IntervalEnum.WEEK: price_in_pence *= 4
+            case IntervalEnum.YEAR: price_in_pence //= 12
+        return price_in_pence
+
     @hybrid_method
     def price_string(self, always_monthly: bool=False) -> str:
         '''Readable representation of the subscription's price.
         If always_monthly=True it will use the monthly interval,
         overriding the subscription's actual interval.'''
 
-        # Attributes will always be present, since this is a child.
-        price_in_pence = self.price_in_pence # type: ignore
-        interval = self.interval # type: ignore
-
         # If always monthly, convert interval.
         if always_monthly:
-            match (interval.value):
-                case IntervalEnum.WEEK: price_in_pence *= 4
-                case IntervalEnum.YEAR: price_in_pence //= 12
+            price_in_pence = self.monthly_price_in_pence
             interval = IntervalEnum.MONTH
+        else:
+            # Attributes will always be present, since this is a child.
+            price_in_pence = self.price_in_pence # type: ignore
+            interval = self.interval # type: ignore
 
         # Get price string.
         PENCE_IN_POUND = 100
