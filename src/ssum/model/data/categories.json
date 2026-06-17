@@ -1,0 +1,30 @@
+[
+    {
+        "id": "tv",
+        "name": "Television"
+    },
+    {
+        "id": "shopping",
+        "name": "Shopping"
+    },
+    {
+        "id": "music",
+        "name": "Music"
+    },
+    {
+        "id": "office",
+        "name": "Office"
+    },
+    {
+        "id": "cloud_storage",
+        "name": "Cloud Storage"
+    },
+    {
+        "id": "cybersecurity",
+        "name": "Cybersecurity"
+    },
+    {
+        "id": "ai",
+        "name": "AI"
+    }
+]

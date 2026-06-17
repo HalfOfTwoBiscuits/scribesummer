@@ -1,0 +1,177 @@
+[
+    {
+        "id": "apple_music",
+        "name": "Apple Music",
+        "categories": [
+            "music"
+        ],
+        "tiers": [
+            {
+                "id": "individual",
+                "name": "Individual",
+                "price_in_pence": 1099,
+                "interval": "m"
+            },
+            {
+                "id": "family",
+                "name": "Family",
+                "price_in_pence": 1699,
+                "interval": "m"
+            },
+            {
+                "id": "student",
+                "name": "Student",
+                "price_in_pence": 599,
+                "interval": "m",
+                "extra_categories": [
+                    "tv"
+                ]
+            }
+        ]
+    },
+
+    {
+        "id": "bitwarden",
+        "name": "bitwarden",
+        "categories": [
+            "cybersecurity"
+        ],
+        "tiers": [
+            {
+                "id": "premium",
+                "name": "Premium",
+                "price_in_pence": 1980,
+                "interval": "y"
+            },
+            {
+                "id": "family",
+                "name": "Family",
+                "price_in_pence": 4788,
+                "interval": "y"
+            }
+        ]
+    },
+
+    {
+        "id": "microsoft_365",
+        "name": "Microsoft 365",
+        "categories": [
+            "office",
+            "cloud Storage",
+            "cybersecurity",
+            "ai"
+        ],
+        "tiers": [
+            {
+                "id": "personal_yearly",
+                "name": "Personal, Yearly",
+                "price_in_pence": 8499,
+                "interval": "y"
+            },
+            {
+                "id": "personal_monthly",
+                "name": "Personal, Monthly",
+                "price_in_pence": 849,
+                "interval": "m"
+            },
+
+            {
+                "id": "family_yearly",
+                "name": "Family, Yearly",
+                "price_in_pence": 10499,
+                "interval": "y"
+            },
+
+            {
+                "id": "family_monthly",
+                "name": "Family, Monthly",
+                "price_in_pence": 1049,
+                "interval": "m"
+            },
+
+            {
+                "id": "premium_yearly",
+                "name": "Premium, Yearly",
+                "price_in_pence": 18999,
+                "interval": "y"
+            },
+
+            {
+                "id": "premium_monthly",
+                "name": "Premium, Monthly",
+                "price_in_pence": 1899,
+                "interval": "m"
+            }
+        ]
+    },
+
+    {
+        "id": "amazon_prime",
+        "name": "Amazon Prime",
+        "categories": [
+            "shopping",
+            "television",
+            "cybersecurity",
+            "ai"
+        ],
+        "tiers": [
+            {
+                "id": "monthly",
+                "name": "Monthly",
+                "price_in_pence": 899,
+                "interval": "m"
+            },
+
+            {
+                "id": "yearly",
+                "name": "Yearly",
+                "price_in_pence": 9500,
+                "interval": "y"
+            },
+
+            {
+                "id": "student_monthly",
+                "name": "Student, Monthly",
+                "price_in_pence": 449,
+                "interval": "m"
+            },
+
+            {
+                "id": "student_yearly",
+                "name": "Student, Yearly",
+                "price_in_pence": 4749,
+                "interval": "y"
+            }
+        ]
+    },
+
+    {
+        "id": "netflix",
+        "name": "Netflix",
+        "categories": [
+            "television"
+        ],
+        "tiers": [
+            {
+                "id": "standard_with_adverts",
+                "name": "Standard With Adverts",
+                "price_in_pence": 599,
+                "interval": "m"
+            },
+
+            {
+                "id": "standard",
+                "name": "Standard",
+                "price_in_pence": 1299,
+                "interval": "m"
+            },
+
+            {
+                "id": "Premium",
+                "name": "Premium",
+                "price_in_pence": 1899,
+                "interval": "m"
+            }
+        ]
+    }
+]
