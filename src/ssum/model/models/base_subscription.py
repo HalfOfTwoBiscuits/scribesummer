@@ -99,3 +99,8 @@ class Subscription(db.Model, TimestampMixin):
             return f'£{pounds}.0{pence}'
         else:
             return f'£{pounds}.{pence}'
+        
+    user_obj: Mapped["User"] = relationship( # type: ignore
+        "User", uselist=False,
+        back_populates="subscriptions"
+    )
