@@ -20,8 +20,8 @@ class Category(db.Model, TimestampMixin):
         back_populates="categories"
     )
 
-    presets_using_it: Mapped[List["SubscriptionPreset"]] = relationship( # type: ignore
-        "SubscriptionPreset",
-        secondary="category_for_preset",
+    tiers_using_it: Mapped[List["SubscriptionPresetTier"]] = relationship( # type: ignore
+        "SubscriptionPresetTier",
+        secondary="category_for_tier",
         back_populates="categories"
     )
