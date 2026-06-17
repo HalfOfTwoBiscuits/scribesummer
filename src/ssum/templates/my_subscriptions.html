@@ -1,0 +1,32 @@
+{% extends 'bases/base.html' %}
+
+{% set title = "My Subscriptions" %}
+
+{% block content %}
+    <main>
+        <h2 id="pageTitle">My Subscriptions</h2>
+        <select id="categorySelect" onchange="filterManager.changeFilter()">
+            {% for category in all_categories %}
+                <option value="{{category.id}}">{{category.name}}</option>
+            {% endfor %}
+        </select>
+
+        <div class="box">
+            <div id="matchingResults" hidden="false">
+                <ul data-initial-num-results="5" id="subscriptionList">
+                    {% for sub in all_subscriptions %}
+                        <li data-filter-categories='{{ category_ids_by_sub[sub.id] | tojson }}'>
+                            <a href='{{ url_for("sub_details", sub_id=sub.id) }}'>
+                                {{ sub.name }}
+                            </a>
+
+                            {{ sub.price_string }} / {{sub.get_price_string(user.budget_per_month)}}
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <button class="button" id="showMoreButton" onclick="searchManager.showMore()">Show more</button>
+        </div>
+        <p class="centred-text" id="noResultsMessage" hidden="true">There are no matching results for your query.</p>
+    </main>
+{% endblock %}

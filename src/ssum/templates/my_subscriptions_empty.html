@@ -1,0 +1,18 @@
+{% extends 'bases/base.html' %}
+
+{% set title = "My Subscriptions" %}
+
+{% block content %}
+    <main>
+        <h2 id="pageTitle">My Subscriptions</h2>
+        <select disabled>
+            <option>All</option>
+        </select>
+
+        <div class="box">
+            <p>You haven't added any subscriptions yet.</p>
+            <p>Tap the button below to add your first one.</p>
+            <a class="<button>" href='{{url_for("add_sub")}}'>+ Add Subscription</a>
+        </div>
+    </main>
+{% endblock %}
