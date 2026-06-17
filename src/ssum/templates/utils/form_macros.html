@@ -1,0 +1,76 @@
+{#
+    Macros used to assist in accessible form rendering.
+#}
+
+{% macro get_error_region_id(form) %}{{ 'form-errors' }}{% endmacro %}
+
+{% macro get_field_error_id(field, index) %}{{ field.id + '-error-' + index|string}}{% endmacro %}
+
+{% macro get_field_error_ids(field) %}{% for err in field.errors %}{{get_field_error_id(field, loop.index)}} {% endfor %}{% endmacro %}
+
+{% macro render_input_field(field) %}
+    {#
+        Render the given field, in its own div, with its own label.
+        If an error occurred, the field will appear red and have an ARIA link to the error message.
+    #}
+
+    <div id="{{field.id}}-div">
+        {{ field.label }}
+        {{ render_field(field, **kwargs) }}
+    </div>
+{% endmacro %}
+
+{% macro render_fieldset(fields, legend) %}
+    {#
+        Render the provided list of fields in a fieldset element
+        with the given legend as a label.
+    #}
+
+    <fieldset>
+        <legend>{{legend}}</legend>
+        <ul role="list">
+            {% for field in fields %}
+                <li>
+                    {{field.label(
+                        render_field(field) + " " + field.label.text
+                    )}}
+                </li>
+            {% endfor %}
+        </ul>
+    </fieldset>
+{% endmacro %}
+
+{% macro render_field(field) %}
+    {#
+        Helper for render_input_field and render_fieldset.
+    #}
+
+    {% if field.errors %}
+        {{ field(class="bad inline", aria_invalid=True, aria_describedby=get_field_error_ids(field), **kwargs) }}
+        <span id="{{field.id}}-inline-error" aria-hidden="true">⚠️</span>
+    {% else %}
+        {{field(**kwargs)}}
+    {% endif %}
+{% endmacro %}
+
+{% macro render_form_errors(form) %}
+    {#
+        Render error messages for the form in a box at the top.
+    #}
+
+   {% if form.errors %}
+    <div class="bad box" id="{{get_error_region_id(form)}}" tabindex="-1">
+      <strong class="titlebar">Errors</strong>
+      <ul>
+        {% for field in form %}
+            {% for err in field.errors %}
+                <li id="{{get_field_error_id(field, loop.index)}}">{{err}}</li>
+            {% endfor %}
+        {% endfor %}
+        {% for err in form.form_errors %}
+            <li>{{err}}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
+{% endmacro %}

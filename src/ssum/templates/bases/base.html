@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en-GB">
+    <head>
+        <!-- Metadata -->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <meta property="og:title" content="{{title}}">
+        <meta property="og:type" content="website">
+        <meta property="og:image" content="{{ url_for('static', filename='images/favicon.ico') }}">
+
+        {% if canonical_url is defined %}
+            <meta property="og:url" content="{{canonical_url}}">
+            <link rel="canonical" href="{{canonical_url}}">
+        {% else %}
+            <meta name="robots" content="noindex, noarchive">
+        {% endif %}
+
+        <!-- Browser tab data -->
+        <title>{{ title }} - Scribesummer</title>
+        <link rel="icon" href='{{ url_for("static", filename="images/favicon.ico") }}'>
+
+        <!-- Dependencies -->
+        <link rel="stylesheet" href="{{ url_for("static", filename="styles/custom.css") }}">
+        <link rel="stylesheet" href="https://unpkg.com/missing.css@1.2.0">
+
+        <script src='{{ url_for("static", filename="scripts/base.js") }}' type='module'></script>
+
+        {% block other_dependencies %}{% endblock %}
+
+        <!-- Header notification data -->
+        {# 
+            There are two types of notification.
+            The header notifications give general state info, e.g. 'Subscription added successfully' or 'Your session has expired'.
+            They are added with `flask.flash()` and JS moves them into the header.
+            The other type are form field notifications (see utils/form_macros.html).
+            Header notifications aren't rendered directly in their intended location because ARIA live regions, which are
+            used to announce important content to screen reader users, are required to be empty on page load and have their content added by JS.
+        #}
+        {% for category, notif in get_flashed_messages(with_categories=true) %}
+            <meta
+            name='{{category}}-{{loop.index}}notif'
+            content='{{notif}}'>
+        {% endfor %}
+    </head>
+    <body onload="Base.loadPage()">
+        <header id="notifications" class="crowded" hidden="true" aria-label="Notifications">
+            <!-- ARIA live regions for header notifications -->
+            <div aria-live='polite' id='polite-header-notifications'></div>
+            <div aria-live='assertive' id='assertive-header-notifications'></div>
+        </header>
+
+        <!-- Main page content -->
+        {% block content %}{% endblock %}
+    </body>
+</html>
