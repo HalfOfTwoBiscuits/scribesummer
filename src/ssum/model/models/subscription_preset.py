@@ -1,5 +1,6 @@
 from typing import List
 
+from sqlalchemy import String
 from sqlalchemy.orm import mapped_column, Mapped, relationship
 
 from scribesummer.src.ssum.model.db import db
@@ -8,8 +9,8 @@ from scribesummer.src.ssum.model.models.timestamp_mixin import TimestampMixin
 class SubscriptionPreset(db.Model, TimestampMixin):
     '''A pre-populated preset for a subscription of a certain brand.'''
 
-    id: Mapped[str] = mapped_column(primary_key=True)
-    name: Mapped[str]
+    id: Mapped[str] = mapped_column(String(255), primary_key=True)
+    name: Mapped[str] = mapped_column(String(255))
 
     # Available tiers for this preset.
     tiers: Mapped[List["SubscriptionPresetTier"]] = relationship( # type: ignore

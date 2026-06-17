@@ -1,6 +1,6 @@
 from typing import List
 
-from sqlalchemy import ForeignKey
+from sqlalchemy import ForeignKey, String
 from sqlalchemy.orm import mapped_column, Mapped, relationship
 
 from scribesummer.src.ssum.model.db import db
@@ -13,8 +13,8 @@ class SubscriptionPresetTier(db.Model, TimestampMixin):
     Each SubscriptionPreset has one or more tiers.
     A subscription created with a preset can be switched around between tiers when editing.'''
 
-    id: Mapped[str] = mapped_column(primary_key=True)
-    name: Mapped[str]
+    id: Mapped[str] = mapped_column(String(255), primary_key=True)
+    name: Mapped[str] = mapped_column(String(255))
     price_in_pence: Mapped[int]
     interval: Mapped[IntervalEnum]
 

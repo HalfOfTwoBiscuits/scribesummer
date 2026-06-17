@@ -1,6 +1,7 @@
 from typing import List
 
-from sqlalchemy.orm import Mapped, relationship
+from sqlalchemy import String
+from sqlalchemy.orm import Mapped, relationship, mapped_column
 
 from scribesummer.src.ssum.model.interval_enum import IntervalEnum
 from scribesummer.src.ssum.model.models.base_subscription import Subscription
@@ -17,7 +18,7 @@ class CustomSubscription(Subscription):
     SQLAlchemy calls this "Single Table Inheritance".
     See: https://docs.sqlalchemy.org/en/20/orm/inheritance.html'''
 
-    name: Mapped[str]
+    name: Mapped[str] = mapped_column(String(255))
     price_in_pence: Mapped[int]
     interval: Mapped[IntervalEnum]
 
