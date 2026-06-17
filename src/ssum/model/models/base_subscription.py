@@ -4,7 +4,7 @@ from dateutil.relativedelta import relativedelta
 
 from sqlalchemy import String
 from sqlalchemy.orm import mapped_column, Mapped
-from sqlalchemy.ext.hybrid import hybrid_method
+from sqlalchemy.ext.hybrid import hybrid_method, hybrid_property
 
 from scribesummer.src.ssum.model.db import db
 from scribesummer.src.ssum.model.interval_enum import IntervalEnum
@@ -33,13 +33,12 @@ class Subscription(db.Model, TimestampMixin):
 
     first_renewal: Mapped[datetime]
 
-    @hybrid_method
-    def next_renewal(self, duration: IntervalEnum) -> datetime:
-        '''Return the next time this subscription needs renewing.
+    @hybrid_property
+    def next_renewal(self) -> datetime:
+        '''Return the next time this subscription needs renewing.'''
 
-        The renewal duration is passed as an argument,
-        because depending on the child class it might be its own
-        attribute or be determined by the preset subscription tier.'''
+        # Attribute will always be present, since this is a child.
+        interval = self.interval # type: ignore
 
         # Starting from the first renewal,
         # repeatedly add the renewal duration
@@ -49,10 +48,38 @@ class Subscription(db.Model, TimestampMixin):
         while renewal < now:
             # Use the relativedelta class to account for leap years
             # and differing amounts of days in a month.
-            match (duration.value):
+            match (interval.value): 
                 case IntervalEnum.WEEK: renewal += relativedelta(weeks=1)
                 case IntervalEnum.YEAR: renewal += relativedelta(years=1)
                 case _: renewal += relativedelta(months=1)
 
         return renewal
-        
+    
+    @hybrid_method
+    def price_string(self, always_monthly: bool=False) -> str:
+        '''Readable representation of the subscription's price.
+        If always_monthly=True it will use the monthly interval,
+        overriding the subscription's actual interval.'''
+
+        # Attributes will always be present, since this is a child.
+        price_in_pence = self.price_in_pence # type: ignore
+        interval = self.interval # type: ignore
+
+        # If always monthly, convert interval.
+        if always_monthly:
+            match (interval.value):
+                case IntervalEnum.WEEK: price_in_pence *= 4
+                case IntervalEnum.YEAR: price_in_pence //= 12
+            interval = IntervalEnum.MONTH
+
+        # Get price string.
+        PENCE_IN_POUND = 100
+
+        pounds = price_in_pence // PENCE_IN_POUND
+        pence = price_in_pence - pounds * PENCE_IN_POUND
+        if pence < 10:
+            price_string = f'£{pounds}.0{pence}'
+        else:
+            price_string = f'£{pounds}.{pence}'
+
+        return f"{price_string}/{interval.name.lower()}"
