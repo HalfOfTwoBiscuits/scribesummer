@@ -10,21 +10,21 @@
                 "id": "individual",
                 "name": "Individual",
                 "price_in_pence": 1099,
-                "interval": "m"
+                "interval": "MONTH"
             },
             {
                 "id": "family",
                 "name": "Family",
                 "price_in_pence": 1699,
-                "interval": "m"
+                "interval": "MONTH"
             },
             {
                 "id": "student",
                 "name": "Student",
                 "price_in_pence": 599,
-                "interval": "m",
+                "interval": "MONTH",
                 "extra_categories": [
-                    "tv"
+                    "television"
                 ]
             }
         ]
@@ -41,13 +41,13 @@
                 "id": "premium",
                 "name": "Premium",
                 "price_in_pence": 1980,
-                "interval": "y"
+                "interval": "YEAR"
             },
             {
                 "id": "family",
                 "name": "Family",
                 "price_in_pence": 4788,
-                "interval": "y"
+                "interval": "YEAR"
             }
         ]
     },
@@ -57,7 +57,7 @@
         "name": "Microsoft 365",
         "categories": [
             "office",
-            "cloud Storage",
+            "cloud_storage",
             "cybersecurity",
             "ai"
         ],
@@ -66,41 +66,41 @@
                 "id": "personal_yearly",
                 "name": "Personal, Yearly",
                 "price_in_pence": 8499,
-                "interval": "y"
+                "interval": "YEAR"
             },
             {
                 "id": "personal_monthly",
                 "name": "Personal, Monthly",
                 "price_in_pence": 849,
-                "interval": "m"
+                "interval": "MONTH"
             },
 
             {
                 "id": "family_yearly",
                 "name": "Family, Yearly",
                 "price_in_pence": 10499,
-                "interval": "y"
+                "interval": "YEAR"
             },
 
             {
                 "id": "family_monthly",
                 "name": "Family, Monthly",
                 "price_in_pence": 1049,
-                "interval": "m"
+                "interval": "MONTH"
             },
 
             {
                 "id": "premium_yearly",
                 "name": "Premium, Yearly",
                 "price_in_pence": 18999,
-                "interval": "y"
+                "interval": "YEAR"
             },
 
             {
                 "id": "premium_monthly",
                 "name": "Premium, Monthly",
                 "price_in_pence": 1899,
-                "interval": "m"
+                "interval": "MONTH"
             }
         ]
     },
@@ -119,28 +119,28 @@
                 "id": "monthly",
                 "name": "Monthly",
                 "price_in_pence": 899,
-                "interval": "m"
+                "interval": "MONTH"
             },
 
             {
                 "id": "yearly",
                 "name": "Yearly",
                 "price_in_pence": 9500,
-                "interval": "y"
+                "interval": "YEAR"
             },
 
             {
                 "id": "student_monthly",
                 "name": "Student, Monthly",
                 "price_in_pence": 449,
-                "interval": "m"
+                "interval": "MONTH"
             },
 
             {
                 "id": "student_yearly",
                 "name": "Student, Yearly",
                 "price_in_pence": 4749,
-                "interval": "y"
+                "interval": "YEAR"
             }
         ]
     },
@@ -156,21 +156,21 @@
                 "id": "standard_with_adverts",
                 "name": "Standard With Adverts",
                 "price_in_pence": 599,
-                "interval": "m"
+                "interval": "MONTH"
             },
 
             {
                 "id": "standard",
                 "name": "Standard",
                 "price_in_pence": 1299,
-                "interval": "m"
+                "interval": "MONTH"
             },
 
             {
                 "id": "Premium",
                 "name": "Premium",
                 "price_in_pence": 1899,
-                "interval": "m"
+                "interval": "MONTH"
             }
         ]
     }
