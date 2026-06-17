@@ -1,4 +1,5 @@
 import json
+from pathlib import Path
 
 from flask_sqlalchemy import SQLAlchemy
 
@@ -8,9 +9,11 @@ class PrePopulator:
     '''Class responsible for pre-populating data from JSON.'''
 
     __db: SQLAlchemy
+    __data_dir: Path
 
     def __init__(self, db: SQLAlchemy):
         self.__db = db
+        self.__data_dir = Path("scribesummer/src/ssum/model/data").resolve()
 
     def populate(self):
         '''Load in JSON for subscription categories and presets.
@@ -20,10 +23,10 @@ class PrePopulator:
         If a category or preset already exists then it will be updated.'''
 
         # Load JSON.
-        with open("data/categories.json") as file:
+        with open(self.__data_dir / "categories.json") as file:
             category_data = json.load(file)
 
-        with open("data/presets.json") as file:
+        with open(self.__data_dir / "presets.json") as file:
             preset_data = json.load(file)
         
         # Create category objects.
