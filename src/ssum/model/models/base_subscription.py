@@ -3,7 +3,7 @@ from datetime import datetime
 from dateutil.relativedelta import relativedelta
 
 from sqlalchemy import String
-from sqlalchemy.orm import mapped_column, Mapped
+from sqlalchemy.orm import mapped_column, Mapped, relationship
 from sqlalchemy.ext.hybrid import hybrid_method, hybrid_property
 
 from scribesummer.src.ssum.model.db import db

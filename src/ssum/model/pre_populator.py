@@ -3,7 +3,7 @@ from pathlib import Path
 
 from flask_sqlalchemy import SQLAlchemy
 
-from scribesummer.src.ssum.model.models import Category, SubscriptionPreset, SubscriptionPresetTier
+from scribesummer.src.ssum.model.models import Category, SubscriptionPreset, SubscriptionPresetTier, User
 
 class PrePopulator:
     '''Class responsible for pre-populating data from JSON.'''
@@ -20,7 +20,9 @@ class PrePopulator:
         May raise FileNotFoundError, JSONDecodeError, UnicodeDecodeError, etc
         if data is absent or in an invalid format.
         
-        If a category or preset already exists then it will be updated.'''
+        If a category or preset already exists then it will be updated.
+        
+        Also adds a dummy user object if it doesn't already exist.'''
 
         # Load JSON.
         with open(self.__data_dir / "categories.json") as file:
@@ -80,6 +82,8 @@ class PrePopulator:
                 preset = self.__db.session.merge(existing_preset)
             
             self.__db.session.add(preset)
+
+        self.__db.session.add(User(budget_per_month=5000)) # type: ignore
 
         self.__db.session.commit()
         

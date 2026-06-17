@@ -4,5 +4,6 @@ from scribesummer.src.ssum.model.models.preset_based_subscription import PresetB
 from scribesummer.src.ssum.model.models.category import Category
 from scribesummer.src.ssum.model.models.subscription_preset import SubscriptionPreset
 from scribesummer.src.ssum.model.models.subscription_preset_tier import SubscriptionPresetTier
+from scribesummer.src.ssum.model.models.user import User
 from scribesummer.src.ssum.model.models.category_join_tier import category_for_tier
 from scribesummer.src.ssum.model.models.category_join_sub import category_for_custom_sub
