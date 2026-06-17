@@ -83,7 +83,9 @@ class PrePopulator:
             
             self.__db.session.add(preset)
 
-        self.__db.session.add(User(budget_per_month=5000)) # type: ignore
+        existing_user = self.__db.session.get(User, 1)
+        if not existing_user: 
+            self.__db.session.add(User(budget_per_month=5000)) # type: ignore
 
         self.__db.session.commit()
         
