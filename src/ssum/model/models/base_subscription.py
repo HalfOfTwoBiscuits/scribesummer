@@ -84,13 +84,18 @@ class Subscription(db.Model, TimestampMixin):
             interval = self.interval # type: ignore
 
         # Get price string.
-        PENCE_IN_POUND = 100
+        price_string = self.get_price_string(price_in_pence)
 
+        return f"{price_string}/{interval.name.lower()}"
+    
+    def get_price_string(self, price_in_pence: int) -> str:
+        '''Utility method to return a readable string reperesentation
+        of the given price in pence.'''
+        
+        PENCE_IN_POUND = 100
         pounds = price_in_pence // PENCE_IN_POUND
         pence = price_in_pence - pounds * PENCE_IN_POUND
         if pence < 10:
-            price_string = f'£{pounds}.0{pence}'
+            return f'£{pounds}.0{pence}'
         else:
-            price_string = f'£{pounds}.{pence}'
-
-        return f"{price_string}/{interval.name.lower()}"
+            return f'£{pounds}.{pence}'
