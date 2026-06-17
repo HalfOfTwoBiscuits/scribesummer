@@ -17,12 +17,6 @@ class SubscriptionPreset(db.Model, TimestampMixin):
         back_populates="preset_obj"
     )
 
-    categories: Mapped[List["Category"]] = relationship( # type: ignore
-        "Category",
-        secondary="category_for_preset",
-        back_populates="presets_using_it"
-    )
-
     used_by: Mapped[List["PresetBasedSubscription"]] = relationship( # type: ignore
         "PresetBasedSubscription",
         back_populates="preset_obj"

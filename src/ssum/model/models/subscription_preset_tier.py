@@ -30,3 +30,9 @@ class SubscriptionPresetTier(db.Model, TimestampMixin):
         "PresetBasedSubscription",
         back_populates="tier_obj"
     )
+
+    categories: Mapped[List["Category"]] = relationship( # type: ignore
+        "Category",
+        secondary="category_for_preset",
+        back_populates="presets_using_it"
+    )
