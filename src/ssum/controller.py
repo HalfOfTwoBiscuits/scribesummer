@@ -25,6 +25,10 @@ class Controller:
         self.__vh = view_handler
         self.__fh = form_handler
 
+        with app.app_context():
+            UserModel = self.__mh.get_model("User")
+            self.__user = self.__mh.db.session.get(UserModel, 1)
+
     def define_url_endpoints(self):
         '''Configure the app to serve each page view at a
         corresponding URL endpoint.
@@ -35,7 +39,7 @@ class Controller:
     def __define_endpoint(self, class_name: str, url: str, *args):
         '''Utility method used to define an endpoint with the provided URL.
         The endpoint name will be the view class's name, converted to snake case.
-        The arguments to `View.as_view()` will be the model handler and form handler, followed by *args.'''
+        The arguments to `View.as_view()` will be the model handler, form handler, and user object, followed by *args.'''
 
         ViewClass = self.__vh.get_view(class_name)
         endpoint_name = self.__endpoint_name_for(class_name)
@@ -43,7 +47,7 @@ class Controller:
         self.__app.add_url_rule(
             url,
             view_func=ViewClass.as_view(
-                endpoint_name, self.__mh, self.__fh, *args
+                endpoint_name, self.__mh, self.__fh, self.__user, *args
             )
         )
 
