@@ -1,0 +1,66 @@
+import json
+
+from flask_sqlalchemy import SQLAlchemy
+
+from scribesummer.src.ssum.model.models import Category, SubscriptionPreset, SubscriptionPresetTier
+
+class PrePopulator:
+    '''Class responsible for pre-populating data from JSON.'''
+
+    __db: SQLAlchemy
+
+    def __init__(self, db: SQLAlchemy):
+        self.__db = db
+
+    def populate(self):
+        '''Load in JSON for subscription categories and presets.
+        May raise FileNotFoundError, JSONDecodeError, UnicodeDecodeError, etc
+        if data is absent or in an invalid format.'''
+
+        # Load JSON.
+        with open("data/categories.json") as file:
+            category_data = json.load(file)
+
+        with open("data/presets.json") as file:
+            preset_data = json.load(file)
+        
+        # Create category objects.
+        # Store them in a dict for reference when creating presets.
+        categories = {}
+        for cat_attrs_dict in category_data:
+            category = Category(**cat_attrs_dict)
+            categories[category.id] = category
+            self.__db.session.add(category)
+
+        # Create preset objects.
+        for preset_data_dict in preset_data:
+
+            # Retrieve category objects.
+            categories_for_preset = [
+                categories[id]
+                for id in preset_data_dict.pop("categories")
+            ]
+
+            # Create tier objects.
+            tiers_for_preset = []
+            for tier_data_dict in preset_data_dict.pop("tiers"):
+
+                # Tiers have the preset's categories and
+                # may optionally specify extra categories
+                # for benefits specific to the tier.
+                categories_for_tier = categories_for_preset.copy()
+                try: 
+                    categories_for_tier += tier_data_dict.pop("extra_categories")
+                except KeyError: pass
+
+                tier = SubscriptionPresetTier(**tier_data_dict)
+                tiers_for_preset.append(tier)
+            
+            # Add preset to commit.
+            preset_data_dict['tiers'] = tiers_for_preset
+            preset = SubscriptionPreset(**preset_data_dict)
+            self.__db.session.add(preset)
+
+        self.__db.session.commit()
+        
+        
