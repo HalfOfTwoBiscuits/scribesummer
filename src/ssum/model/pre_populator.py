@@ -56,6 +56,9 @@ class PrePopulator:
             tiers_for_preset = []
             for tier_data_dict in preset_data_dict.pop("tiers"):
 
+                # Tier IDs start with the preset's id.
+                tier_data_dict['id'] = preset_data_dict['id'] + '_' + tier_data_dict['id']
+
                 # Tiers have the preset's categories and
                 # may optionally specify extra categories
                 # for benefits specific to the tier.
