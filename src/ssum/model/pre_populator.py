@@ -15,7 +15,9 @@ class PrePopulator:
     def populate(self):
         '''Load in JSON for subscription categories and presets.
         May raise FileNotFoundError, JSONDecodeError, UnicodeDecodeError, etc
-        if data is absent or in an invalid format.'''
+        if data is absent or in an invalid format.
+        
+        If a category or preset already exists then it will be updated.'''
 
         # Load JSON.
         with open("data/categories.json") as file:
@@ -30,6 +32,12 @@ class PrePopulator:
         for cat_attrs_dict in category_data:
             category = Category(**cat_attrs_dict)
             categories[category.id] = category
+
+            # Merge with the existing object.
+            existing_category = self.__db.session.get(Category, category.id) 
+            if existing_category:
+                category = self.__db.session.merge(existing_category)
+            
             self.__db.session.add(category)
 
         # Create preset objects.
@@ -56,9 +64,15 @@ class PrePopulator:
                 tier = SubscriptionPresetTier(**tier_data_dict)
                 tiers_for_preset.append(tier)
             
-            # Add preset to commit.
+            # Add tiers to preset.
             preset_data_dict['tiers'] = tiers_for_preset
             preset = SubscriptionPreset(**preset_data_dict)
+
+            # Merge with the existing object.
+            existing_preset = self.__db.session.get(SubscriptionPreset, preset.id)
+            if existing_preset:
+                preset = self.__db.session.merge(existing_preset)
+            
             self.__db.session.add(preset)
 
         self.__db.session.commit()
