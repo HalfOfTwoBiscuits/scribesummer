@@ -18,7 +18,7 @@ class PresetBasedSubscription(Subscription):
     See: https://docs.sqlalchemy.org/en/20/orm/inheritance.html'''
 
     # Optional relationship to the preset it was defined with.
-    preset_id: Mapped[str] = mapped_column(ForeignKey("subscription_preset.id"))
+    preset_id: Mapped[str] = mapped_column(ForeignKey("subscription_preset.id"), nullable=True)
 
     # This Relationship object allows the preset to be easily retrieved in Python.
     preset_obj: Mapped["SubscriptionPreset"] = relationship( # type: ignore
@@ -27,7 +27,7 @@ class PresetBasedSubscription(Subscription):
     )
 
     # Also related to one of `SubscriptionPreset.tiers`.
-    tier_id: Mapped[str] = mapped_column(ForeignKey("subscription_preset_tier.id"))
+    tier_id: Mapped[str] = mapped_column(ForeignKey("subscription_preset_tier.id"), nullable=True)
     tier_obj: Mapped["SubscriptionPresetTier"] = relationship( # type: ignore
         "SubscriptionPresetTier", uselist=False,
         back_populates="used_by"
