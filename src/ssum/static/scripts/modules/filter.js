@@ -17,7 +17,7 @@ export class FilterManager {
         this.#showMoreButtonElem = document.getElementById("showMoreButton");
         this.#noResultsElem = document.getElementById("noResultsMessage");
 
-        this.#initialNumResults = this.resultListElem.dataset.initialNumResults;
+        this.#initialNumResults = this.#resultListElem.dataset.initialNumResults;
         this.#maxResults = 0;
 
         // On initalisation, find matching results and display the first lot.
