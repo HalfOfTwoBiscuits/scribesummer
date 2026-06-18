@@ -16,7 +16,7 @@
                 <ul data-initial-num-results="5" id="subscriptionList">
                     {% for sub in all_subscriptions %}
                         <li data-filter-categories='{{ category_ids_by_sub[sub.id] | tojson }}'>
-                            <a href='{{ url_for("subscription_details", sub_id=sub.id) }}'>
+                            <a href='#'>
                                 {{ sub.name }}
                             </a>
 

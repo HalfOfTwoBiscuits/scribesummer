@@ -19,4 +19,12 @@ class MySubscriptions(View):
                 self.__mh.db.select(CategoryModel)
             ).scalars()
 
-            return render_template("my_subscriptions.html", user=user, all_subscriptions=subs, all_categories=cats)
+            category_ids_by_sub = {sub.id : [cat.id for cat in sub.categories] for sub in subs}
+
+            return render_template(
+                "my_subscriptions.html",
+                user=user,
+                all_subscriptions=subs,
+                all_categories=cats,
+                category_ids_by_sub=category_ids_by_sub
+            )
