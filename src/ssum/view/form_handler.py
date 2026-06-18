@@ -1,5 +1,6 @@
 import flask_wtf
 
+from scribesummer.src.ssum.view.forms import AddCustomSubscriptionForm
 from scribesummer.src.ssum.view.exceptions import FormNotFoundError
 
 class FormHandler:
@@ -10,7 +11,9 @@ class FormHandler:
     def __init__(self):
         '''Store a dictionary of form classes from the forms package.'''
 
-        self.__forms = {}
+        self.__forms = {
+            "AddCustomSubscription": AddCustomSubscriptionForm
+        }
 
     def get_form(self, id: str) -> type[flask_wtf.FlaskForm]:
         '''Return the form class with the given ID.
