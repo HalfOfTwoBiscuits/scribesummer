@@ -1,0 +1,17 @@
+{
+  "name": "Scribesummer",
+  "short_name": "SS",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "theme_color": "#ECB",
+  "background_color": "#ECB",
+  "icons": [
+    {
+      "src": "/static/images/favicon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon",
+      "purpose": "any maskable"
+    }
+  ]
+}
