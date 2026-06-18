@@ -4,6 +4,7 @@
     --big-font: 1.45rem;
     --usual-font: 1.25rem;
     --small-font: 1rem;
+    background-color: #ecb;
 }
 
 main {
@@ -26,6 +27,7 @@ form {
 input[type=submit], button, .\<button\> {
     padding: 5px !important;
     font-size: var(--usual-font) !important;
+    text-decoration: underline;
 }
 
 input[type=checkbox] {
@@ -35,4 +37,8 @@ input[type=checkbox] {
 
 h1.\<a\> {
     margin-block-start: 0px !important;
+}
+
+h2 {
+    text-align: center;
 }
