@@ -1,5 +1,5 @@
 {% extends 'bases/base.html' %}
-{% from "utils/form_macros.html" import render_input_field, render_field, render_field_errors, render_form_errors %}
+{% from "utils/form_macros.html" import render_input_field, render_field, render_form_errors, render_fieldset %}
 
 {% set title = "Add Subscription" %}
 
@@ -17,7 +17,7 @@
                 {{ render_form_errors(form) }}
 
                 {{ render_input_field(form.name) }}
-                {{ render_input_field(form.categories, style="height:10em;") }}
+                {{ render_fieldset(form.categories, form.categories.label.text) }}
                 {{ render_input_field(form.price) }}
                 {{ render_input_field(form.interval) }}
                 {{ render_input_field(form.date) }}

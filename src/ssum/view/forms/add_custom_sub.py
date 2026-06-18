@@ -1,10 +1,11 @@
 from decimal import Decimal
 
 from flask_wtf import FlaskForm
-from wtforms import DecimalField, SubmitField, StringField, SelectField, SelectMultipleField, DateField
+from wtforms import DecimalField, SubmitField, StringField, SelectField, DateField
 from wtforms.validators import DataRequired, NumberRange, AnyOf
 
-from scribesummer.src.ssum.view.form_validators import category_ids_match, date_in_future
+from scribesummer.src.ssum.view.form_validators import category_ids_match, date_in_future, validate_box_checked
+from scribesummer.src.ssum.view.multi_checkbox_field import MultiCheckboxField
 
 class AddCustomSubscriptionForm(FlaskForm):
     '''Form used to add a custom subscription.'''
@@ -21,7 +22,7 @@ class AddCustomSubscriptionForm(FlaskForm):
         DataRequired("Please enter a name for the subscription.")
     ])
 
-    categories = SelectMultipleField(
+    categories = MultiCheckboxField(
         "Categories",
         validators=[
             category_ids_match(
@@ -29,7 +30,8 @@ class AddCustomSubscriptionForm(FlaskForm):
                 "please check all options are still selectable in the dropdown" \
                 "after reloading the page, and all of them clearly relate " \
                 "to a type of subscription."
-            )
+            ),
+            validate_box_checked("Please select at least one category for the subscription.")
         ]
     )
 

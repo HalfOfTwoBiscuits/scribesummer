@@ -23,3 +23,15 @@ def date_in_future(message):
             raise ValidationError(message)
     
     return validator
+
+def validate_box_checked(message):
+    '''Validates that at least one box was checked on the MultiCheckboxField
+    by raising an error if len() of the data is 0.
+    This could potentially be done with the built-in Length validator,
+    but the documentation says it is for strings so I elected not to stretch its use case.'''
+
+    def validator(form, field):
+        if len(field.data) == 0:
+            raise ValidationError(message)
+    
+    return validator
