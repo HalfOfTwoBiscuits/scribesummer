@@ -16,7 +16,7 @@
                 <ul data-initial-num-results="5" id="subscriptionList">
                     {% for sub in all_subscriptions %}
                         <li data-filter-categories='{{ category_ids_by_sub[sub.id] | tojson }}'>
-                            <a href='{{ url_for("sub_details", sub_id=sub.id) }}'>
+                            <a href='{{ url_for("subscription_details", sub_id=sub.id) }}'>
                                 {{ sub.name }}
                             </a>
 
@@ -24,9 +24,10 @@
                         </li>
                     {% endfor %}
                 </ul>
+                <button class="button" id="showMoreButton" onclick="searchManager.showMore()">Show more</button>
             </div>
-            <button class="button" id="showMoreButton" onclick="searchManager.showMore()">Show more</button>
+            <p class="centred-text" id="noResultsMessage" hidden="true">There are no matching results for your query.</p>
         </div>
-        <p class="centred-text" id="noResultsMessage" hidden="true">There are no matching results for your query.</p>
+        <a class="<button>" href='{{url_for("add_subscription")}}'>+ Add Subscription</a>
     </main>
 {% endblock %}
