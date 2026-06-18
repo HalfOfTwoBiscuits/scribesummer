@@ -20,7 +20,7 @@
                                 {{ sub.name }}
                             </a>
 
-                            {{ sub.price_string }} / {{sub.get_price_string(user.budget_per_month)}}
+                            {{ sub.price_string() }} / {{sub.get_price_string(user.budget_per_month)}}
                         </li>
                     {% endfor %}
                 </ul>
