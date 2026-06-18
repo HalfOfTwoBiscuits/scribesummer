@@ -8,6 +8,7 @@
         <meta property="og:title" content="{{title}}">
         <meta property="og:type" content="website">
         <meta property="og:image" content="{{ url_for('static', filename='images/favicon.ico') }}">
+        <link rel="manifest" href="/manifest.json">
 
         {% if canonical_url is defined %}
             <meta property="og:url" content="{{canonical_url}}">
