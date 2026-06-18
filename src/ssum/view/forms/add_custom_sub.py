@@ -14,7 +14,7 @@ class AddCustomSubscriptionForm(FlaskForm):
 
         # Retrieve database object and models, for use in validation.
         self.__class__.db = mh.db
-        self.__class__.Category = mh.get_model("Category")
+        self.__class__.CategoryModel = mh.get_model("Category")
         self.__class__.categories = []
 
     name = StringField("Name", [
