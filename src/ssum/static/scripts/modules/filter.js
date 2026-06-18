@@ -60,9 +60,12 @@ export class FilterManager {
             categories = JSON.parse(resultElem.dataset.filterCategories);
 
             // Results should appear if the selected category is within the array.
-            if (categories.includes(selectedCategory)) {
+            // Filtering was removed, because my method of retrieving JSON data from the attribute
+            // is no longer valid with a browser update that enforces double-quotes around attributes
+            // instead of single quotes.
+            //if (categories.includes(selectedCategory)) {
                 this.#matchingResults.push(resultElem);
-            }
+            //}
         }
     }
 
