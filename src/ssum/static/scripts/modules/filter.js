@@ -3,7 +3,6 @@ export class FilterManager {
 
     #categoryElem;
     #resultListElem;
-    #resultListElem;
     #resultAreaElem;
     #showMoreButtonElem;
     #noResultsElem;
