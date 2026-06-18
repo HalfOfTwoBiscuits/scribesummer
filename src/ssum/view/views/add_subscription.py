@@ -15,9 +15,9 @@ class AddSubscription(View):
         form = self.__AddCustomSubForm(self.__mh)
         CategoryModel = self.__mh.get_model("Category")
 
-        cats = self.__mh.db.session.execute(
+        cats = list(self.__mh.db.session.execute(
             self.__mh.db.select(CategoryModel)
-        ).scalars()
+        ).scalars())
 
         cat_names = [(cat.id, cat.name) for cat in cats]
         form.categories.choices = cat_names
