@@ -33,6 +33,7 @@ class Controller:
 
         self.__define_endpoint("MySubscriptions", "/my-subscriptions")
         self.__define_endpoint("AddSubscription", "/add-sub")
+        self.__define_endpoint("PWAManifest", "/manifest.json")
         
 
     def __define_endpoint(self, class_name: str, url: str, *args):

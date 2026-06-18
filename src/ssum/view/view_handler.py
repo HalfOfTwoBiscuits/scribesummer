@@ -1,6 +1,6 @@
 import flask.views
 
-from scribesummer.src.ssum.view.views import MySubscriptions, AddSubscription
+from scribesummer.src.ssum.view.views import MySubscriptions, AddSubscription, PWAManifest
 from scribesummer.src.ssum.view.exceptions import ViewNotFoundError
 
 class ViewHandler:
@@ -13,7 +13,8 @@ class ViewHandler:
 
         self.__views = {
             "MySubscriptions": MySubscriptions,
-            "AddSubscription": AddSubscription
+            "AddSubscription": AddSubscription,
+            "PWAManifest": PWAManifest
         }
 
     def get_view(self, id: str) -> type[flask.views.View]:
