@@ -1,5 +1,6 @@
 import flask.views
 
+from scribesummer.src.ssum.view.views import MySubscriptions, AddSubscription
 from scribesummer.src.ssum.view.exceptions import ViewNotFoundError
 
 class ViewHandler:
@@ -10,7 +11,10 @@ class ViewHandler:
     def __init__(self):
         '''Store a dictionary of view classes from the views package.'''
 
-        self.__views = {}
+        self.__views = {
+            "MySubscriptions": MySubscriptions,
+            "AddSubscription": AddSubscription
+        }
 
     def get_view(self, id: str) -> type[flask.views.View]:
         '''Return the view class with the given ID.
