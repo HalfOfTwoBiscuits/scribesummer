@@ -4,7 +4,7 @@ import flask_sqlalchemy.model
 from scribesummer.src.ssum.model.db import db
 from scribesummer.src.ssum.model.pre_populator import PrePopulator
 from scribesummer.src.ssum.model.exceptions import ModelNotFoundError
-from scribesummer.src.ssum.model.models import CustomSubscription, PresetBasedSubscription, SubscriptionPreset, SubscriptionPresetTier, Category, User
+from scribesummer.src.ssum.model.models import Subscription, CustomSubscription, PresetBasedSubscription, SubscriptionPreset, SubscriptionPresetTier, Category, User
 
 class ModelHandler:
     '''Class responsible for setting up the SQLAlchemy database and storing its models.
@@ -27,6 +27,7 @@ class ModelHandler:
         # By using fixed identifiers, the class names can change
         # without affecting other parts of the program that use them.
         self.__models = {
+            "Subscription": Subscription,
             "CustomSubscription": CustomSubscription,
             "PresetBasedSubscription": PresetBasedSubscription,
             "SubscriptionPreset": SubscriptionPreset,
