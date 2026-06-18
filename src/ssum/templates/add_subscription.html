@@ -1,9 +1,30 @@
 {% extends 'bases/base.html' %}
+{% from "utils/form_macros.html" import render_input_field, render_field, render_field_errors, render_form_errors %}
 
 {% set title = "Add Subscription" %}
 
 {% block content %}
     <main>
         <h2 id="pageTitle">Add Subscription</h2>
+        <div class="box">
+            <!--
+                Use `novalidate` attribute to prevent default validation
+                and use only server-side validation.
+                This helps make error messages more specific and ensure accessiblity.
+            -->
+            <form novalidate aria-labelledby="pageTitle" action="{{ url_for('add_subscription') }}" method="post">
+                {{ form.csrf_token }}
+                {{ render_form_errors(form) }}
+
+                {{ render_input_field(form.name) }}
+                {{ render_input_field(form.categories, style="height:10em;") }}
+                {{ render_input_field(form.price) }}
+                {{ render_input_field(form.interval) }}
+                {{ render_input_field(form.date) }}
+
+                {{ form.submit }}
+            </form>
+        </div>
+        <a class="<button>" href='{{url_for("my_subscriptions")}}'>Back To My Subscriptions</a>
     </main>
 {% endblock %}
