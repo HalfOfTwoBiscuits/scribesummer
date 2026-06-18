@@ -1,8 +1,8 @@
 {
   "name": "Scribesummer",
   "short_name": "SS",
-  "start_url": "/",
-  "scope": "/",
+  "start_url": "/my-subscriptions",
+  "scope": "/my-subscriptions",
   "display": "standalone",
   "theme_color": "#ECB",
   "background_color": "#ECB",

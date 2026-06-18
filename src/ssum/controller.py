@@ -31,7 +31,7 @@ class Controller:
         URL parameters, database models and forms that a view uses
         will be set up as arguments to the created view function.'''
 
-        self.__define_endpoint("MySubscriptions", "/")
+        self.__define_endpoint("MySubscriptions", "/my-subscriptions")
         self.__define_endpoint("AddSubscription", "/add-sub")
         
 
